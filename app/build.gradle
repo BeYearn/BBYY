@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'android-apt'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "24.0.2"
+    defaultConfig {
+        applicationId "emagroup.beyearn.com.bbyy"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        // Enabling multidex support.
+        multiDexEnabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    compile 'com.android.support:multidex:1.0.1'
+
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:cardview-v7:25.1.0'
+    compile project(':frameLib')
+    compile project(':commonutils')
+
+    apt 'com.jakewharton:butterknife-compiler:8.2.1'
+    compile 'com.jakewharton:butterknife:8.2.1'
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    //临时
+    compile 'com.pnikosis:materialish-progress:1.7'
+    compile 'com.github.chrisbanes.photoview:library:1.2.4'
+    //dagger2(app中的apply plugin: 'com.neenbedankt.android-apt'   还有项目中的dependencies的 classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4')
+    compile 'com.google.dagger:dagger:2.5'
+    compile 'com.google.dagger:dagger-compiler:2.5'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+}
